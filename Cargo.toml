@@ -1,0 +1,7 @@
+[package]
+name = "pi-darts"
+version = "0.1.0"
+authors = ["Florian Schnell <florian.schnell@netlight.com>"]
+
+[dependencies]
+rand = "0.4"
