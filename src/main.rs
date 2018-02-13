@@ -6,7 +6,7 @@ use rand::Rng;
 fn main() {
     let mut hits_total = 0;
     let number_threads = 4;
-    let number_throws_per_thread = 10000000;
+    let number_throws_per_thread = 1000000;
     let mut handles = Vec::<thread::JoinHandle<usize>>::new();
 
     for _i in 0..number_threads {
@@ -23,13 +23,14 @@ fn main() {
     let total_throws = number_throws_per_thread * number_threads;
     println!(
         "estimation of PI: {:.32}",
-        4. * (hits_total as f64 / total_throws as f64)
+        4. * (hits_total as f64 / total_throws as f64),
     );
+    println!("PI's actual value: {:.32}", std::f32::consts::PI);
 }
 
 fn perform_throws(number_of_throws: usize) -> usize {
     let mut hits = 0;
-    for _i in 0..number_of_throws {
+    for _ in 0..number_of_throws {
         let (x, y) = throw();
         // using sqrt here would give us the real length
         // but sqrt only distorts the function's curve
